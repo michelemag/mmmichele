@@ -1,229 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Michele Magaro</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mmmichele</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap" rel="stylesheet">
   <style>
-    body {
+    :root {
+      --bg-left: #fcf8f2;
+      --bg-right: #dce3cc;
+      --text: #4b0039;
+      --highlight: #e94f37;
+      --line: #6e755d;
+      --font-body: 'Inter', sans-serif;
+      --blob1: #002fff;
+    }
+
+    html, body {
       margin: 0;
-      font-family: 'DM Sans', sans-serif;
-      background: #f6f5f3;
-      overflow-x: hidden;
-      color: #231f20;
-    }
-
-    ::selection {
-      background: rgba(255, 174, 153, 0.5);
-    }
-
-    header {
-      text-align: center;
-      padding: 2rem;
-      font-size: 2.5rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    nav {
-      margin-bottom: 2rem;
-    }
-
-    nav a {
-      text-decoration: none;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: normal;
-      padding: 0.5rem 1rem;
-      color: #231f20;
-      font-size: 1.2rem;
-    }
-
-    nav a:hover {
-      text-decoration: none;
-      color: #231f20;
-    }
-
-    .mailing-list {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 2rem;
-      margin: 2rem 0;
-      font-family: 'DM Sans', sans-serif;
-    }
-
-    .mailing-list label {
-      margin-right: 0.5rem;
-      font-size: 1.1rem;
-      font-weight: regular;
-    }
-
-    .mailing-list input[type="email"] {
-      padding: 0.8rem 0;
-      font-size: 1rem;
-      background: transparent;
-      color: #231f20;
-      text-align: left;
-      font-style: italic;
-      border: none;
-      outline: none;
-      width: 220px;
-      flex-shrink: 0;
-    }
-
-    .mailing-list input[type="email"]::placeholder {
-      color: #231f20;
-      opacity: 0.5;
-      font-style: italic;
-    }
-
-    .mailing-list button {
       padding: 0;
-      font-size: 1.5rem;
-      background-color: transparent;
-      color: #231f20;
-      border: none;
-      cursor: pointer;
-      margin-left: 0;
-      flex-shrink: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: var(--font-body);
+    }
+
+    .container {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: normal;
+      height: 100vh;
+      width: 100vw;
     }
 
-    .mailing-list button:hover {
-      color: #444;
+    .nav-area {
+      width: 70%;
+      position: relative;
+      background: var(--bg-left);
+      border-right: 15px solid var(--line);
+      overflow: hidden;
     }
 
-    .mailing-form {
-      display: flex;
-      align-items: center;
+    .nav-area::before,
+    .nav-area::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+      z-index: 0;
     }
 
-    .collage {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-      padding: 0 2rem;
+    .nav-area::before {
+      width: 300px;
+      height: 300px;
+      background: var(--blob1);
+      top: 20%;
+      left: 15%;
     }
 
-    .collage-item {
+    .nav-area::after {
       width: 200px;
       height: 200px;
-      background-color: #ddd;
+      background: var(--blob1);
+      top: 65%;
+      left: 40%;
+    }
+
+    .image-area {
+      width: 30%;
       position: relative;
-      transform: rotate(0deg);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.1rem;
-      text-align: center;
-      font-weight: 500;
-    }
-
-    .marquee {
-      border-top: 3px solid #231f20;
-      border-bottom: 3px solid #231f20;
-      padding: 0.3rem;
-      font-size: 1rem;
-      width: 100%;
-      margin-bottom: 1rem;
-      margin-top: 2rem;
-      font-weight: bolder;
-      text-transform: lowercase;
-      flex-shrink: 0;
-      background: #eae7dc;
+      background: var(--bg-right);
       overflow: hidden;
-      white-space: nowrap;
-      font-family: 'DM Sans', sans-serif;
     }
 
-    .marquee-content {
-      display: inline-block;
-      animation: scrollQuotes 140s linear infinite;
-      animation-delay: 5s;
+    .image-stack {
+      position: absolute;
+      width: 100%;
+      height: 100%;
     }
 
-    .marquee-content a {
-      color: #231f20;
+    .image-stack img {
+      position: absolute;
+      width: 70%;
+      max-width: 90%;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      opacity: 0.85;
+      transition: transform 0.3s ease;
+    }
+
+    .image-stack img:hover {
+      transform: scale(1.05);
+    }
+
+    .image-stack img:nth-child(1) {
+      top: 10%; left: 15%; z-index: 4;
+    }
+
+    .image-stack img:nth-child(2) {
+      top: 30%; left: 10%; z-index: 3;
+    }
+
+    .image-stack img:nth-child(3) {
+      top: 50%; left: 20%; z-index: 2;
+    }
+
+    .image-stack img:nth-child(4) {
+      top: 70%; left: 5%; z-index: 1;
+    }
+
+    .nav-link {
+      position: absolute;
+      font-size: 1.2rem;
+      color: var(--text);
       text-decoration: none;
-      margin-right: 4rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+      z-index: 1;
     }
 
-    .marquee-content a:hover {
-      text-decoration: underline;
+    .nav-link:hover {
+      color: var(--highlight);
+      transform: scale(1.05);
     }
 
-    @keyframes scrollQuotes {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-100%); }
+    .nav-about { top: 60%; left: 40%; animation: float1 7s ease-in-out infinite alternate; }
+    .nav-work { top: 30%; left: 60%; animation: float2 6s ease-in-out infinite alternate; }
+    .nav-contact { top: 70%; left: 50%; animation: float3 8s ease-in-out infinite alternate; }
+    .nav-extra1 { top: 50%; left: 25%; animation: float4 5.5s ease-in-out infinite alternate; }
+    .nav-extra2 { top: 40%; left: 15%; animation: float5 6.5s ease-in-out infinite alternate; }
+    .nav-extra3 { top: 80%; left: 35%; animation: float6 7.5s ease-in-out infinite alternate; }
+    .nav-name {
+      top: 45%; left: 50%;
+      font-size: 1.5rem;
+      color: var(--highlight);
+      transform: translate(-50%, -50%);
+      animation: float7 9s ease-in-out infinite alternate;
+      z-index: 1;
     }
 
-    @media screen and (max-width: 900px) {
-      .mailing-list input[type="email"] {
-        width: 100%;
-      }
+    footer {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      z-index: 1;
+    }
+
+    @keyframes float1 {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(8px, -6px); }
+    }
+    @keyframes float2 {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-6px, -4px); }
+    }
+    @keyframes float3 {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(5px, -7px); }
+    }
+    @keyframes float4 {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-4px, -5px); }
+    }
+    @keyframes float5 {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(3px, -3px); }
+    }
+    @keyframes float6 {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(6px, -6px); }
+    }
+    @keyframes float7 {
+      0% { transform: translate(-50%, -50%); }
+      100% { transform: translate(-48%, -58%); }
     }
   </style>
 </head>
 <body>
-  <header>
-     michele magaro
-  </header>
-
-  <nav>
-    <a href="#about">about me</a>
-    <a href="#gallery">gallery</a>
-    <a href="#woodworking">woodworking</a>
-    <a href="#cyanotypes">cyanotypes</a>
-    <a href="#filmphotography">film photography</a>
-    <a href="#experimenting">experimenting</a>
-    <a href="#animation">animation</a>
-  </nav>
-
-  <section class="collage">
-    <div class="collage-item">Art 1</div>
-    <div class="collage-item">Sketch</div>
-    <div class="collage-item">Note</div>
-    <div class="collage-item">Photo</div>
-  </section>
-
-  <section class="mailing-list">
-    <form action="#" method="post" class="mailing-form">
-      <label for="email">mailing list</label>
-      <input type="email" id="email" name="email" placeholder="................................................." required>
-      <button type="submit" class="plus-button">+</button>
-    </form>
-  </section>
-
-  <div class="marquee">
-    <div class="marquee-content">
-      <a href="https://www.youtube.com/watch?v=lfayiBoaXE8">“You do not have to be good.
-You do not have to walk on your knees
-For a hundred miles through the desert, repenting.
-You only have to let the soft animal of your body
-love what it loves.
-Tell me about your despair, yours, and I will tell you mine.
-Meanwhile the world goes on.
-Meanwhile the sun and the clear pebbles of the rain
-are moving across the landscapes,
-over the prairies and the deep trees,
-the mountains and the rivers.
-Meanwhile the wild geese, high in the clean blue air,
-are heading home again.
-Whoever you are, no matter how lonely,
-the world offers itself to your imagination,
-calls to you like the wild geese, harsh and exciting --
-over and over announcing your place
-in the family of things. Mary Oliver”</a>
+  <div class="container">
+    <div class="nav-area">
+      <a href="#about" class="nav-link nav-about">about</a>
+      <a href="#work" class="nav-link nav-work">work</a>
+      <a href="#contact" class="nav-link nav-contact">contact</a>
+      <a href="#journal" class="nav-link nav-extra1">journal</a>
+      <a href="#archive" class="nav-link nav-extra2">archive</a>
+      <a href="#scent" class="nav-link nav-extra3">scent</a>
+      <div class="nav-link nav-name">mmmichele</div>
+      <footer>© mmmichele</footer>
+    </div>
+    <div class="image-area">
+      <div class="image-stack">
+        <img src="images/Amphora.jpg" alt="Artwork 1">
+        <img src="images/Amphora.jpg" alt="Artwork 2">
+        <img src="images/Amphora.jpg" alt="Artwork 3">
+        <img src="images/Amphora.jpg" alt="Artwork 4">
+      </div>
     </div>
   </div>
+  <script>
+    const images = document.querySelectorAll('.image-stack img');
+    let current = 0;
+
+    setInterval(() => {
+      images.forEach((img, index) => {
+        img.style.opacity = index === current ? '0.85' : '0';
+      });
+      current = (current + 1) % images.length;
+    }, 3000);
+  </script>
 </body>
 </html>
