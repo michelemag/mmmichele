@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – Michele Magaro</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Include GSAP from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+
+  <style>
+    /* Layout & Typography */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Helvetica, sans-serif;
+      background-color: #fdfcfb;
+      color: #111;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    a {
+      color: #002fff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      opacity: 0.6;
+    }
+
+    /* Floating Nav Styles */
+    nav.floating-nav {
+      position: fixed;
+      top: 24px;
+      right: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+      z-index: 100;
+    }
+
+    nav.floating-nav a {
+      font-size: 1rem;
+      color: #111;
+      text-decoration: none;
+      position: relative;
+    }
+
+    nav.floating-nav a.active {
+      text-decoration: underline;
+    }
+
+    /* Blobs */
+    .blob-left, .blob-right {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: -1;
+    }
+
+    .blob-left {
+      background: #002fff;
+      top: -150px;
+      left: -150px;
+    }
+
+    .blob-right {
+      background: #b6b3ff;
+      bottom: -150px;
+      right: -150px;
+    }
+
+    /* Content Wrapper */
+    .about-container {
+      max-width: 600px;
+      margin: 20vh auto;
+      padding: 0 1rem;
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      position: fixed;
+      bottom: 16px;
+      left: 32px;
+      font-size: 0.85rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background blobs -->
+  <div class="blob-left"></div>
+  <div class="blob-right"></div>
+
+  <!-- Floating nav -->
+  <nav class="floating-nav">
+    <a href="index.html">home</a>
+    <a href="about.html" class="active">about</a>
+    <a href="art.html">art</a>
+    <a href="contact.html">contact</a>
+  </nav>
+
+  <!-- About content -->
+  <main class="about-container">
+    <h1>About Michele</h1>
+    <p>
+      Michele is a Seattle-based multimedia artist whose work blends utilitarian form with experimental process. Exploring how everyday objects and overlooked moments can carry emotional and artistic weight, her practice invites connection and reflection—on time, imperfection, and perspective.
+    </p>
+  </main>
+
+  <!-- Footer -->
+  <footer>© 2025 Michele Magaro</footer>
+
+  <!-- Floating nav animation using GSAP -->
+  <script defer>
+    window.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll(".floating-nav a");
+
+      links.forEach(link => {
+        // Animate each link individually with random float
+        gsap.to(link, {
+          y: () => gsap.utils.random(-5, 5),
+          x: () => gsap.utils.random(-3, 3),
+          rotation: () => gsap.utils.random(-1, 1),
+          duration: () => gsap.utils.random(2, 4),
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
+        });
+      });
+    });
+  </script>
+</body>
+</html>
