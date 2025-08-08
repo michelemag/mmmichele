@@ -14,7 +14,7 @@ html, body {
   height: 100vh;
   overflow: hidden;
   font-family: var(--font-body);
-  background: url('images/surfbackground.jpg') no-repeat center center fixed;
+  background: url('surfbackground.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -25,12 +25,11 @@ html, body {
   width: 100vw;
 }
 
-/* Left nav area */
+/* Left nav area fills full width now */
 .nav-area {
-  width: 70%;
+  width: 100%;
   position: relative;
-  /* background removed to show page background image */
-  border-right: 15px solid var(--line);
+  /* border removed since no right area */
   overflow: hidden;
 }
 
@@ -46,52 +45,7 @@ html, body {
   filter: none;
 }
 
-/* Removed previous blobs (.nav-area::after removed) */
-
-/* Right image area */
-.image-area {
-  width: 30%;
-  position: relative;
-  background: var(--bg-right);
-  overflow: hidden;
-}
-
-.image-stack {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.image-stack img {
-  position: absolute;
-  width: 70%;
-  max-width: 90%;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  opacity: 0.85;
-  transition: transform 0.3s ease;
-}
-
-.image-stack img:hover {
-  transform: scale(1.05);
-}
-
-.image-stack img:nth-child(1) {
-  top: 10%; left: 15%; z-index: 4;
-}
-
-.image-stack img:nth-child(2) {
-  top: 30%; left: 10%; z-index: 3;
-}
-
-.image-stack img:nth-child(3) {
-  top: 50%; left: 20%; z-index: 2;
-}
-
-.image-stack img:nth-child(4) {
-  top: 70%; left: 5%; z-index: 1;
-}
+/* Removed blobs and right image area styles */
 
 /* Nav links styling and positions with float animations */
 .nav-link {
@@ -109,15 +63,17 @@ html, body {
   transform: scale(1.05);
 }
 
-.nav-about { top: 60%; left: 40%; animation: float1 7s ease-in-out infinite alternate; }
-.nav-work { top: 30%; left: 60%; animation: float2 6s ease-in-out infinite alternate; }
-.nav-contact { top: 70%; left: 50%; animation: float3 8s ease-in-out infinite alternate; }
-.nav-shop { top: 50%; left: 25%; animation: float4 5.5s ease-in-out infinite alternate; }
-.nav-extra2 { top: 40%; left: 15%; animation: float5 6.5s ease-in-out infinite alternate; }
-.nav-extra3 { top: 80%; left: 35%; animation: float6 7.5s ease-in-out infinite alternate; }
+/* Adjust nav-link positions slightly for wider layout */
+.nav-about { top: 60%; left: 45%; animation: float1 7s ease-in-out infinite alternate; }
+.nav-work { top: 30%; left: 65%; animation: float2 6s ease-in-out infinite alternate; }
+.nav-contact { top: 70%; left: 55%; animation: float3 8s ease-in-out infinite alternate; }
+.nav-shop { top: 50%; left: 30%; animation: float4 5.5s ease-in-out infinite alternate; }
+.nav-extra2 { top: 40%; left: 20%; animation: float5 6.5s ease-in-out infinite alternate; }
+.nav-extra3 { top: 80%; left: 40%; animation: float6 7.5s ease-in-out infinite alternate; }
 
 .nav-name {
-  top: 45%; left: 50%;
+  top: 45%;
+  left: 50%;
   font-size: 1.5rem;
   color: var(--highlight);
   transform: translate(-50%, -50%);
