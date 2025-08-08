@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>mmmichele</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg-left: #fcf8f2;
@@ -66,6 +66,51 @@
       left: 40%;
     }
 
+    /* Nav menu container with flexbox */
+    .nav-menu {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      gap: 3rem;
+      z-index: 1;
+    }
+
+    .nav-menu a {
+      font-size: 1.2rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-menu a:hover {
+      color: var(--highlight);
+      transform: scale(1.05);
+    }
+
+    .nav-name {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      font-size: 1.5rem;
+      color: var(--highlight);
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      user-select: none;
+      animation: float7 9s ease-in-out infinite alternate;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      z-index: 1;
+    }
+
     .image-area {
       width: 30%;
       position: relative;
@@ -110,68 +155,7 @@
       top: 70%; left: 5%; z-index: 1;
     }
 
-    .nav-link {
-      position: absolute;
-      font-size: 1.2rem;
-      color: var(--text);
-      text-decoration: none;
-      transition: color 0.3s ease, transform 0.3s ease;
-      z-index: 1;
-    }
-
-    .nav-link:hover {
-      color: var(--highlight);
-      transform: scale(1.05);
-    }
-
-    .nav-about { top: 60%; left: 40%; animation: float1 7s ease-in-out infinite alternate; }
-    .nav-work { top: 30%; left: 60%; animation: float2 6s ease-in-out infinite alternate; }
-    .nav-contact { top: 70%; left: 50%; animation: float3 8s ease-in-out infinite alternate; }
-    .nav-extra1 { top: 50%; left: 25%; animation: float4 5.5s ease-in-out infinite alternate; }
-    .nav-extra2 { top: 40%; left: 15%; animation: float5 6.5s ease-in-out infinite alternate; }
-    .nav-extra3 { top: 80%; left: 35%; animation: float6 7.5s ease-in-out infinite alternate; }
-    .nav-name {
-      top: 45%; left: 50%;
-      font-size: 1.5rem;
-      color: var(--highlight);
-      transform: translate(-50%, -50%);
-      animation: float7 9s ease-in-out infinite alternate;
-      z-index: 1;
-    }
-
-    footer {
-      position: absolute;
-      bottom: 2rem;
-      left: 2rem;
-      font-size: 0.9rem;
-      color: var(--text);
-      z-index: 1;
-    }
-
-    @keyframes float1 {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(8px, -6px); }
-    }
-    @keyframes float2 {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(-6px, -4px); }
-    }
-    @keyframes float3 {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(5px, -7px); }
-    }
-    @keyframes float4 {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(-4px, -5px); }
-    }
-    @keyframes float5 {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(3px, -3px); }
-    }
-    @keyframes float6 {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(6px, -6px); }
-    }
+    /* Floating animations */
     @keyframes float7 {
       0% { transform: translate(-50%, -50%); }
       100% { transform: translate(-48%, -58%); }
@@ -181,19 +165,21 @@
 <body>
   <div class="container">
     <div class="nav-area">
-      <a href="about.html" class="nav-link nav-about">about</a>
-      <a href="work.html" class="nav-link nav-work">work</a>
-      <a href="contact.html" class="nav-link nav-contact">contact</a>
-      <a href="https://mmmichele.bigcartel.com/" class="nav-link nav-shop" target="_blank" rel="noopener">shop</a>
-      <div class="nav-link nav-name">mmmichele</div>
+      <nav class="nav-menu">
+        <a href="about.html">about</a>
+        <a href="work.html">work</a>
+        <a href="contact.html">contact</a>
+        <a href="https://mmmichele.bigcartel.com/" target="_blank" rel="noopener">shop</a>
+      </nav>
+      <div class="nav-name">mmmichele</div>
       <footer>© mmmichele</footer>
     </div>
     <div class="image-area">
       <div class="image-stack">
-        <img src="images/Amphora.jpg" alt="Artwork 1">
-        <img src="images/Amphora.jpg" alt="Artwork 2">
-        <img src="images/Amphora.jpg" alt="Artwork 3">
-        <img src="images/Amphora.jpg" alt="Artwork 4">
+        <img src="images/Amphora.jpg" alt="Artwork 1" />
+        <img src="images/Amphora.jpg" alt="Artwork 2" />
+        <img src="images/Amphora.jpg" alt="Artwork 3" />
+        <img src="images/Amphora.jpg" alt="Artwork 4" />
       </div>
     </div>
   </div>
