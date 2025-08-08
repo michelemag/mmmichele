@@ -14,7 +14,7 @@ html, body {
   height: 100vh;
   overflow: hidden;
   font-family: var(--font-body);
-  background: url('surfbackground.jpg') no-repeat center center fixed;
+  background: url('images/surfbackground.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
