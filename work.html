@@ -2,164 +2,147 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Work | mmmichele</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work – Michele Magaro</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Include GSAP from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+
   <style>
-    main {
-      max-width: 900px;
-      margin: 3rem auto 5rem;
-      padding: 0 1rem;
-      color: var(--text);
-      font-family: var(--font-body);
-    }
+    /* Work page specific styles */
 
-    h1 {
-      font-weight: 700;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: var(--highlight);
-    }
-
-    /* Category filter buttons */
-    .filters {
-      margin-bottom: 2rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .filters button {
-      background: none;
-      border: 2px solid var(--highlight);
-      color: var(--highlight);
-      padding: 0.4rem 1rem;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .filters button.active,
-    .filters button:hover {
-      background: var(--highlight);
-      color: white;
-    }
-
-    /* Grid of projects */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-    }
-
-    .project-card {
-      background: var(--bg-left);
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-    }
-
-    .project-image {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .project-info {
-      padding: 1rem 1.2rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .project-title {
-      font-weight: 600;
-      font-size: 1.3rem;
-      margin: 0 0 0.4rem;
-      color: var(--text);
-    }
-
-    .project-description {
+    body {
       margin: 0;
-      color: var(--line);
+      padding: 0;
+      font-family: Helvetica, sans-serif;
+      background-color: #fdfcfb;
+      color: #111;
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+
+    main.work-container {
+      max-width: 900px;
+      margin: 20vh auto 4rem auto;
+      padding: 0 1rem;
+      line-height: 1.7;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    main.work-container figure {
+      margin: 0;
+      cursor: pointer;
+    }
+
+    main.work-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0; /* no rounded corners */
+      box-shadow: none; /* no shadows */
+      object-fit: cover;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+
+    main.work-container img:hover {
+      transform: scale(1.05);
+    }
+
+    main.work-container figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #444;
+      text-align: center;
+    }
+
+    /* Floating Nav Styles (same as about.html) */
+    nav.floating-nav {
+      position: fixed;
+      top: 24px;
+      right: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+      z-index: 100;
+      font-family: Helvetica, sans-serif;
+    }
+
+    nav.floating-nav a {
       font-size: 1rem;
-      flex-grow: 1;
+      color: #111;
+      text-decoration: none;
+      position: relative;
+    }
+
+    nav.floating-nav a.active {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      position: fixed;
+      bottom: 16px;
+      left: 32px;
+      font-size: 0.85rem;
+      color: #666;
     }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Work</h1>
+  <!-- Floating nav -->
+  <nav class="floating-nav" aria-label="Main navigation">
+    <a href="index.html">home</a>
+    <a href="about.html">about</a>
+    <a href="work.html" class="active" aria-current="page">work</a>
+    <a href="contact.html">contact</a>
+    <a href="https://mmmichele.bigcartel.com/" target="_blank" rel="noopener">shop</a>
+  </nav>
 
-    <!-- Filter Buttons -->
-    <div class="filters" aria-label="Filter projects by category">
-      <button class="active" data-filter="all">All</button>
-      <button data-filter="woodworking">Woodworking</button>
-      <button data-filter="cyanotypes">Cyanotypes</button>
-      <button data-filter="printmaking">Printmaking</button>
-    </div>
+  <main class="work-container" aria-label="Gallery of work">
+    <!-- Example items -->
+    <figure data-tags="woodworking">
+      <img src="images/woodwork1.jpg" alt="Woodworking project 1" />
+      <figcaption>Woodworking Project 1</figcaption>
+    </figure>
 
-    <!-- Projects Grid -->
-    <div class="projects">
-      <div class="project-card" data-category="woodworking">
-        <img class="project-image" src="images/wood1.jpg" alt="Wooden bowl" />
-        <div class="project-info">
-          <h3 class="project-title">Handcrafted Wooden Bowl</h3>
-          <p class="project-description">Turned wood bowl with natural finish, 2023.</p>
-        </div>
-      </div>
+    <figure data-tags="cyanotypes">
+      <img src="images/cyanotype1.jpg" alt="Cyanotype artwork 1" />
+      <figcaption>Cyanotype Artwork 1</figcaption>
+    </figure>
 
-      <div class="project-card" data-category="cyanotypes">
-        <img class="project-image" src="images/cyan1.jpg" alt="Cyanotype print" />
-        <div class="project-info">
-          <h3 class="project-title">Blue Cyanotype Print</h3>
-          <p class="project-description">Sun-exposed cyanotype on handmade paper, 2022.</p>
-        </div>
-      </div>
+    <figure data-tags="woodworking">
+      <img src="images/woodwork2.jpg" alt="Woodworking project 2" />
+      <figcaption>Woodworking Project 2</figcaption>
+    </figure>
 
-      <div class="project-card" data-category="printmaking">
-        <img class="project-image" src="images/print1.jpg" alt="Linocut print" />
-        <div class="project-info">
-          <h3 class="project-title">Linocut Print Series</h3>
-          <p class="project-description">Limited edition prints carved and printed by hand.</p>
-        </div>
-      </div>
+    <figure data-tags="sculpture">
+      <img src="images/sculpture1.jpg" alt="Sculpture artwork 1" />
+      <figcaption>Sculpture Artwork 1</figcaption>
+    </figure>
 
-      <!-- Add more projects here with matching structure and correct data-category -->
-    </div>
+    <!-- Add more figure blocks with data-tags as needed -->
   </main>
 
-  <script>
-    // Filter functionality (vanilla JS)
-    const filterButtons = document.querySelectorAll('.filters button');
-    const projects = document.querySelectorAll('.project-card');
+  <footer>© 2025 Michele Magaro</footer>
 
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        // Add active class to clicked button
-        button.classList.add('active');
+  <!-- GSAP float animation for nav links -->
+  <script defer>
+    window.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll(".floating-nav a");
 
-        const filter = button.getAttribute('data-filter');
-
-        projects.forEach(project => {
-          if (filter === 'all' || project.getAttribute('data-category') === filter) {
-            project.style.display = 'flex';
-          } else {
-            project.style.display = 'none';
-          }
+      links.forEach(link => {
+        gsap.to(link, {
+          y: () => gsap.utils.random(-5, 5),
+          x: () => gsap.utils.random(-3, 3),
+          rotation: () => gsap.utils.random(-1, 1),
+          duration: () => gsap.utils.random(2, 4),
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
         });
       });
     });
