@@ -2,15 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Work – Michele Magaro</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Include GSAP from CDN -->
+  <!-- GSAP for nav animation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
 
   <style>
-    /* Work page specific styles */
-
     body {
       margin: 0;
       padding: 0;
@@ -26,17 +24,55 @@
       margin: 20vh auto 4rem auto;
       padding: 0 1rem;
       line-height: 1.7;
+    }
+
+    /* Page Title */
+    main.work-container h1 {
+      text-align: center;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    /* Filter Buttons Container */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filters button {
+      background: none;
+      border: 2px solid #002fff;
+      color: #002fff;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+
+    .filters button.active,
+    .filters button:hover {
+      background-color: #002fff;
+      color: white;
+    }
+
+    /* Gallery grid */
+    .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
     }
 
-    main.work-container figure {
+    .gallery figure {
       margin: 0;
       cursor: pointer;
     }
 
-    main.work-container img {
+    .gallery img {
       width: 100%;
       height: auto;
       display: block;
@@ -47,18 +83,18 @@
       transition: transform 0.3s ease;
     }
 
-    main.work-container img:hover {
+    .gallery img:hover {
       transform: scale(1.05);
     }
 
-    main.work-container figcaption {
+    .gallery figcaption {
       margin-top: 0.5rem;
       font-size: 0.9rem;
       color: #444;
       text-align: center;
     }
 
-    /* Floating Nav Styles (same as about.html) */
+    /* Floating Nav Styles */
     nav.floating-nav {
       position: fixed;
       top: 24px;
@@ -82,7 +118,6 @@
       text-decoration: underline;
     }
 
-    /* Footer */
     footer {
       position: fixed;
       bottom: 16px;
@@ -102,35 +137,48 @@
     <a href="https://mmmichele.bigcartel.com/" target="_blank" rel="noopener">shop</a>
   </nav>
 
-  <main class="work-container" aria-label="Gallery of work">
-    <!-- Example items -->
-    <figure data-tags="woodworking">
-      <img src="images/woodwork1.jpg" alt="Woodworking project 1" />
-      <figcaption>Woodworking Project 1</figcaption>
-    </figure>
+  <main class="work-container" aria-label="Work gallery section">
+    <h1>Work</h1>
 
-    <figure data-tags="cyanotypes">
-      <img src="images/cyanotype1.jpg" alt="Cyanotype artwork 1" />
-      <figcaption>Cyanotype Artwork 1</figcaption>
-    </figure>
+    <!-- Filter buttons -->
+    <div class="filters" role="group" aria-label="Filter work by category">
+      <button type="button" class="filter-btn active" data-filter="all">All</button>
+      <button type="button" class="filter-btn" data-filter="woodworking">Woodworking</button>
+      <button type="button" class="filter-btn" data-filter="cyanotypes">Cyanotypes</button>
+      <button type="button" class="filter-btn" data-filter="sculpture">Sculpture</button>
+      <!-- Add more filter buttons here -->
+    </div>
 
-    <figure data-tags="woodworking">
-      <img src="images/woodwork2.jpg" alt="Woodworking project 2" />
-      <figcaption>Woodworking Project 2</figcaption>
-    </figure>
+    <!-- Gallery grid -->
+    <div class="gallery" aria-live="polite">
+      <figure data-tags="woodworking">
+        <img src="images/woodwork1.jpg" alt="Woodworking project 1" />
+        <figcaption>Woodworking Project 1</figcaption>
+      </figure>
 
-    <figure data-tags="sculpture">
-      <img src="images/sculpture1.jpg" alt="Sculpture artwork 1" />
-      <figcaption>Sculpture Artwork 1</figcaption>
-    </figure>
+      <figure data-tags="cyanotypes">
+        <img src="images/cyanotype1.jpg" alt="Cyanotype artwork 1" />
+        <figcaption>Cyanotype Artwork 1</figcaption>
+      </figure>
 
-    <!-- Add more figure blocks with data-tags as needed -->
+      <figure data-tags="woodworking">
+        <img src="images/woodwork2.jpg" alt="Woodworking project 2" />
+        <figcaption>Woodworking Project 2</figcaption>
+      </figure>
+
+      <figure data-tags="sculpture">
+        <img src="images/sculpture1.jpg" alt="Sculpture artwork 1" />
+        <figcaption>Sculpture Artwork 1</figcaption>
+      </figure>
+
+      <!-- Add more figures with correct data-tags -->
+    </div>
   </main>
 
   <footer>© 2025 Michele Magaro</footer>
 
-  <!-- GSAP float animation for nav links -->
   <script defer>
+    // GSAP float animation for nav links
     window.addEventListener("DOMContentLoaded", () => {
       const links = document.querySelectorAll(".floating-nav a");
 
@@ -143,6 +191,30 @@
           repeat: -1,
           yoyo: true,
           ease: "sine.inOut"
+        });
+      });
+
+      // Filtering logic
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const galleryItems = document.querySelectorAll('.gallery figure');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Remove active class from all buttons
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          // Add active class to clicked button
+          button.classList.add('active');
+
+          const filter = button.getAttribute('data-filter');
+
+          galleryItems.forEach(item => {
+            const tags = item.getAttribute('data-tags').split(',').map(t => t.trim());
+            if (filter === 'all' || tags.includes(filter)) {
+              item.style.display = '';
+            } else {
+              item.style.display = 'none';
+            }
+          });
         });
       });
     });
