@@ -125,13 +125,13 @@ body.subpage {
 /* Per-page blob colors */
 /* ============================= */
 body.subpage-about {
-  --blob-left: #eaff61;
-  --blob-right: #ffcc99;
+  --blob-left: #3f3ff2;
+  --blob-right: #00d4ff;
 }
 
 body.subpage-work {
-  --blob-left: #3f3ff2;
-  --blob-right: #00d4ff;
+  --blob-left: #eaff61;
+  --blob-right: #ffcc99;
 }
 
 /* ============================= */
