@@ -5,185 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Work – Michele Magaro</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- GSAP for nav animation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Helvetica, sans-serif;
-      background-color: #fdfcfb;
-      color: #111;
-      min-height: 100vh;
-      overflow-y: auto;
-    }
-
-    main.work-container {
-      max-width: 900px;
-      margin: 20vh auto 4rem auto;
-      padding: 0 1rem;
-      line-height: 1.7;
-    }
-
-    /* Page Title */
-    main.work-container h1 {
-      text-align: center;
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
-
-    /* Filter Buttons Container */
-    .filters {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .filters button {
-      background: none;
-      border: 2px solid #002fff;
-      color: #002fff;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 3px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
-    }
-
-    .filters button.active,
-    .filters button:hover {
-      background-color: #002fff;
-      color: white;
-    }
-
-    /* Gallery grid */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .gallery figure {
-      margin: 0;
-      cursor: pointer;
-    }
-
-    .gallery img {
-      max-width: 300px; 
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 0; /* no rounded corners */
-      box-shadow: none; /* no shadows */
-      object-fit: cover;
-      user-select: none;
-      transition: transform 0.3s ease;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-
-    .gallery figcaption {
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-      color: #444;
-      text-align: left;
-    }
-
-    /* Floating Nav Styles */
-    nav.floating-nav {
-      position: fixed;
-      top: 24px;
-      right: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.5rem;
-      z-index: 100;
-      font-family: Helvetica, sans-serif;
-    }
-
-    nav.floating-nav a {
-      font-size: 1rem;
-      color: #111;
-      text-decoration: none;
-      position: relative;
-    }
-
-    nav.floating-nav a.active {
-      text-decoration: underline;
-    }
-
-    footer {
-      position: fixed;
-      bottom: 16px;
-      left: 32px;
-      font-size: 0.85rem;
-      color: #666;
-    }
-  </style>
 </head>
-<body>
-  <!-- Floating nav -->
-  <nav class="floating-nav" aria-label="Main navigation">
+<body class="subpage subpage-work">
+  <!-- Blobs -->
+  <div class="blob-left"></div>
+  <div class="blob-right"></div>
+
+  <!-- Floating Nav -->
+  <nav class="floating-nav">
     <a href="index.html">home</a>
     <a href="about.html">about</a>
-    <a href="work.html" class="active" aria-current="page">work</a>
+    <a href="work.html" class="active">work</a>
     <a href="contact.html">contact</a>
     <a href="https://mmmichele.bigcartel.com/" target="_blank" rel="noopener">shop</a>
   </nav>
 
-  <main class="work-container" aria-label="Work gallery section">
+  <!-- Content -->
+  <main class="work-container">
     <h1>Work</h1>
 
     <!-- Filter buttons -->
-    <div class="filters" role="group" aria-label="Filter work by category">
+    <div class="filters">
       <button type="button" class="filter-btn active" data-filter="all">All</button>
       <button type="button" class="filter-btn" data-filter="woodworking">Woodworking</button>
       <button type="button" class="filter-btn" data-filter="cyanotypes">Cyanotypes</button>
       <button type="button" class="filter-btn" data-filter="pottery">Pottery</button>
-      <!-- Add more filter buttons here -->
     </div>
 
-    <!-- Gallery grid -->
-    <div class="gallery" aria-live="polite">
+    <!-- Gallery -->
+    <div class="gallery">
       <figure data-tags="woodworking">
         <img src="images/tomswalnut.jpeg" alt="Toms walnut" />
         <figcaption>Walnut Platters, 2025</figcaption>
       </figure>
-
       <figure data-tags="cyanotypes">
         <img src="images/kellycyanotype2024.jpeg" alt="Kelly Cyanotype" />
         <figcaption>Kelly on Portra Cyanotype, 2024</figcaption>
       </figure>
-
       <figure data-tags="woodworking">
         <img src="images/allspaltedmaple.jpeg" alt="Spalted Maple" />
         <figcaption>Spalted Maple Bowls, 2024</figcaption>
       </figure>
-
       <figure data-tags="pottery">
         <img src="images/potteryset.jpeg" alt="Pottery Set" />
         <figcaption>Nerikomi Breakfast Pottery Set, 2025</figcaption>
       </figure>
-
-      <!-- Add more figures with correct data-tags -->
     </div>
   </main>
 
   <footer>© 2025 Michele Magaro</footer>
 
+  <!-- JS -->
   <script defer>
-    // GSAP float animation for nav links
     window.addEventListener("DOMContentLoaded", () => {
-      const links = document.querySelectorAll(".floating-nav a");
-
-      links.forEach(link => {
+      // Floating nav animation
+      document.querySelectorAll(".floating-nav a").forEach(link => {
         gsap.to(link, {
           y: () => gsap.utils.random(-5, 5),
           x: () => gsap.utils.random(-3, 3),
@@ -195,26 +72,19 @@
         });
       });
 
-      // Filtering logic
+      // Filtering
       const filterButtons = document.querySelectorAll('.filter-btn');
       const galleryItems = document.querySelectorAll('.gallery figure');
 
       filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-          // Remove active class from all buttons
           filterButtons.forEach(btn => btn.classList.remove('active'));
-          // Add active class to clicked button
           button.classList.add('active');
-
-          const filter = button.getAttribute('data-filter');
+          const filter = button.dataset.filter;
 
           galleryItems.forEach(item => {
-            const tags = item.getAttribute('data-tags').split(',').map(t => t.trim());
-            if (filter === 'all' || tags.includes(filter)) {
-              item.style.display = '';
-            } else {
-              item.style.display = 'none';
-            }
+            const tags = item.dataset.tags.split(',').map(t => t.trim());
+            item.style.display = (filter === 'all' || tags.includes(filter)) ? '' : 'none';
           });
         });
       });
