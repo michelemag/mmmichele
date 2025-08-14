@@ -3,25 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact – Michele Magaro</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>Contact – Michele 
+  </title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
 </head>
-<body>
-  <header>
-    <!-- You can copy your existing site header/nav here -->
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="shop.html">Shop</a>
-      <a href="contact.html" class="active">Contact</a>
-    </nav>
-  </header>
+<body class="subpage subpage-contact">
+  <!-- Blobs -->
+  <div class="blob-left"></div>
+  <div class="blob-right"></div>
+
+  <!-- Floating Nav -->
+  <nav class="floating-nav">
+    <a href="index.html">home</a>
+    <a href="about.html">about</a>
+    <a href="work.html">work</a>
+    <a 
+       class="active">contact</a>
+  <a href="https://mmmichele.bigcartel.com/" target="_blank" rel="noopener">shop</a>
+  </nav>
 
   <main>
     <section class="contact-section">
-      <h1>Get in Touch</h1>
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+      <h1>Reach Out</h1>
+      <form action="https://formspree.io/f/meozdkrn" method="POST" class="contact-form">
         <label>
           Name
           <input type="text" name="name" required>
@@ -40,8 +45,23 @@
   </main>
 
   <footer>
-    <!-- You can copy your existing footer here -->
-    <p>&copy; 2025 Michele Magaro. All rights reserved.</p>
+    <p>&copy; mmmichele</p>
   </footer>
+ <!-- GSAP Animation -->
+  <script defer>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".floating-nav a").forEach(link => {
+        gsap.to(link, {
+          y: () => gsap.utils.random(-5, 5),
+          x: () => gsap.utils.random(-3, 3),
+          rotation: () => gsap.utils.random(-1, 1),
+          duration: () => gsap.utils.random(2, 4),
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
+        });
+      });
+    });
+  </script>
 </body>
 </html>
