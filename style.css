@@ -320,3 +320,30 @@ footer {
 .contact-form button:hover {
   background: #c23d2c;
 }
+.face-pop {
+  position: fixed;       /* stays in place even when scrolling */
+  bottom: -20px;         /* sticks slightly off bottom */
+  left: -30px;           /* sticks slightly off left */
+  width: 180px;          /* adjust to your PNG size */
+  z-index: 10;           /* make sure it's above blobs/content */
+  pointer-events: none;  /* prevents blocking clicks on nav/links */
+}
+
+/* Optional subtle floating animation with CSS only */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.face-pop {
+  animation: floaty 4s ease-in-out infinite;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .face-pop {
+    width: 120px;
+    bottom: -10px;
+    left: -15px;
+  }
+}
