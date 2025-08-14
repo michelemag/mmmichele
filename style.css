@@ -342,7 +342,7 @@ footer {
 /* Mobile adjustments */
 @media (max-width: 600px) {
   .face-pop {
-    width: 120px;
+    width: 220px;
     bottom: -10px;
     left: -15px;
   }
