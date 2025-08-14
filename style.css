@@ -324,7 +324,7 @@ footer {
   position: fixed;       /* stays in place even when scrolling */
   bottom: -20px;         /* sticks slightly off bottom */
   left: -30px;           /* sticks slightly off left */
-  width: 180px;          /* adjust to your PNG size */
+  width: 300px;          /* adjust to your PNG size */
   z-index: 10;           /* make sure it's above blobs/content */
   pointer-events: none;  /* prevents blocking clicks on nav/links */
 }
