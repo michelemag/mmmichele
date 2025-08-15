@@ -7,14 +7,13 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F9DGMGHMFF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-F9DGMGHMFF');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9DGMGHMFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F9DGMGHMFF');
+  </script>
 </head>
 <body class="subpage subpage-work">
   <!-- Blobs -->
@@ -44,11 +43,11 @@
 
     <!-- Gallery -->
     <div class="gallery">
-      <figure data-tags="woodworking">
+      <figure data-tags="woodworking" class="clickable" data-title="Walnut Platters, 2025" data-description="These walnut platters were turned and finished in 2025. Each piece explores the grain patterns unique to the wood.">
         <img src="images/tomswalnut.jpeg" alt="Toms walnut" />
         <figcaption>Walnut Platters, 2025</figcaption>
       </figure>
-      <figure data-tags="cyanotypes">
+      <figure data-tags="cyanotypes" class="clickable" data-title="Kelly on Portra Cyanotype, 2024" data-description="This cyanotype portrait was created on Portra paper in 2024, experimenting with light exposure and texture.">
         <img src="images/kellycyanotype2024.jpeg" alt="Kelly Cyanotype" />
         <figcaption>Kelly on Portra Cyanotype, 2024</figcaption>
       </figure>
@@ -56,12 +55,26 @@
         <img src="images/allspaltedmaple.jpeg" alt="Spalted Maple" />
         <figcaption>Spalted Maple Bowls, 2024</figcaption>
       </figure>
-      <figure data-tags="pottery">
+      <figure data-tags="pottery" class="clickable" data-title="Nerikomi Breakfast Pottery Set, 2025" data-description="Breakfast set featuring nerikomi patterns, made in 2025. The process emphasizes layering and color contrast.">
         <img src="images/potteryset.jpeg" alt="Pottery Set" />
         <figcaption>Nerikomi Breakfast Pottery Set, 2025</figcaption>
       </figure>
     </div>
   </main>
+
+  <!-- Modal -->
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <div class="modal-left">
+        <button class="modal-close">&times;</button>
+        <h2 id="modal-title"></h2>
+        <p id="modal-description"></p>
+      </div>
+      <div class="modal-right">
+        <div class="images"></div>
+      </div>
+    </div>
+  </div>
 
   <footer>© mmmichele</footer>
 
@@ -96,6 +109,37 @@
             item.style.display = (filter === 'all' || tags.includes(filter)) ? '' : 'none';
           });
         });
+      });
+
+      // Modal functionality
+      const modal = document.getElementById('projectModal');
+      const modalTitle = document.getElementById('modal-title');
+      const modalDescription = document.getElementById('modal-description');
+      const modalImages = modal.querySelector('.images');
+      const modalClose = modal.querySelector('.modal-close');
+
+      document.querySelectorAll('.gallery figure.clickable').forEach(fig => {
+        fig.addEventListener('click', () => {
+          modal.style.display = 'flex';
+          modalTitle.textContent = fig.dataset.title;
+          modalDescription.textContent = fig.dataset.description;
+
+          // clear previous images
+          modalImages.innerHTML = '';
+          // add main image
+          const mainImg = document.createElement('img');
+          mainImg.src = fig.querySelector('img').src;
+          modalImages.appendChild(mainImg);
+          // if you want additional images, add them here per project
+        });
+      });
+
+      modalClose.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+
+      modal.addEventListener('click', e => {
+        if(e.target === modal) modal.style.display = 'none';
       });
     });
   </script>
