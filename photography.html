@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photography – Michele Magaro</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9DGMGHMFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F9DGMGHMFF');
+  </script>
+</head>
+<body class="subpage subpage-photography">
+  <!-- Blobs -->
+  <div class="blob-left"></div>
+  <div class="blob-right"></div>
+
+  <!-- Floating Nav -->
+  <nav class="floating-nav">
+    <a href="index.html">home</a>
+    <a href="about.html">about</a>
+    <a href="work.html">work</a>
+    <a href="photography.html" class="active">photography</a>
+    <a href="contact.html">contact</a>
+    <a href="https://mmmichele.bigcartel.com/" target="_blank" rel="noopener">shop</a>
+  </nav>
+
+  <!-- Content -->
+  <main class="work-container">
+    <h1>Photography</h1>
+
+    <!-- Filter buttons -->
+    <div class="filters">
+      <button type="button" class="filter-btn active" data-filter="all">All</button>
+      <button type="button" class="filter-btn" data-filter="film">Film</button>
+      <button type="button" class="filter-btn" data-filter="digital">Digital</button>
+    </div>
+
+    <!--
+      ═══════════════════════════════════════════════
+      HOW TO ADD YOUR PHOTOS:
+
+      1. Upload your image to the /images/ folder on GitHub
+      2. Copy a <figure> block and paste it inside .gallery
+      3. Set data-tags="film"  OR  data-tags="digital"
+      4. Add class="clickable" if you want it to open a modal popup
+         then fill in data-title="" and data-description=""
+      5. Update src, alt, and figcaption text
+      ═══════════════════════════════════════════════
+    -->
+    <div class="gallery">
+
+      <figure data-tags="film" class="clickable"
+        data-title="Golden Hour, 2024"
+        data-description="Shot on Portra 400. Add your notes here — the moment, location, whatever feels right.">
+        <img src="images/PHOTO1.jpg" alt="Golden Hour" />
+        <figcaption>Golden Hour, 2024</figcaption>
+      </figure>
+
+      <figure data-tags="digital" class="clickable"
+        data-title="Studio Still Life, 2025"
+        data-description="Digital. Add your notes about the shoot here.">
+        <img src="images/PHOTO2.jpg" alt="Studio Still Life" />
+        <figcaption>Studio Still Life, 2025</figcaption>
+      </figure>
+
+      <figure data-tags="film" class="clickable"
+        data-title="Morning Light, 2024"
+        data-description="HP5 Plus. Add your notes here.">
+        <img src="images/PHOTO3.jpg" alt="Morning Light" />
+        <figcaption>Morning Light, 2024</figcaption>
+      </figure>
+
+      <figure data-tags="digital"
+        data-title="Window Series no. 3, 2025"
+        data-description="Digital. Add your notes here.">
+        <img src="images/PHOTO4.jpg" alt="Window Series no. 3" />
+        <figcaption>Window Series no. 3, 2025</figcaption>
+      </figure>
+
+      <figure data-tags="film" class="clickable"
+        data-title="Dusk Study, 2025"
+        data-description="Portra 800. Add your notes here.">
+        <img src="images/PHOTO5.jpg" alt="Dusk Study" />
+        <figcaption>Dusk Study, 2025</figcaption>
+      </figure>
+
+      <figure data-tags="digital" class="clickable"
+        data-title="Arrangement no. 7, 2025"
+        data-description="Digital. Add your notes here.">
+        <img src="images/PHOTO6.jpg" alt="Arrangement no. 7" />
+        <figcaption>Arrangement no. 7, 2025</figcaption>
+      </figure>
+
+    </div>
+  </main>
+
+  <!-- Modal (identical to work page) -->
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <div class="modal-left">
+        <button class="modal-close">&times;</button>
+        <h2 id="modal-title"></h2>
+        <p id="modal-description"></p>
+      </div>
+      <div class="modal-right">
+        <div class="images"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>© mmmichele</footer>
+
+  <script defer>
+    window.addEventListener("DOMContentLoaded", () => {
+      // Floating nav animation
+      document.querySelectorAll(".floating-nav a").forEach(link => {
+        gsap.to(link, {
+          y: () => gsap.utils.random(-5, 5),
+          x: () => gsap.utils.random(-3, 3),
+          rotation: () => gsap.utils.random(-1, 1),
+          duration: () => gsap.utils.random(2, 4),
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
+        });
+      });
+
+      // Filtering
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const galleryItems = document.querySelectorAll('.gallery figure');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          const filter = button.dataset.filter;
+          galleryItems.forEach(item => {
+            const tags = item.dataset.tags.split(',').map(t => t.trim());
+            item.style.display = (filter === 'all' || tags.includes(filter)) ? '' : 'none';
+          });
+        });
+      });
+
+      // Modal
+      const modal = document.getElementById('projectModal');
+      const modalTitle = document.getElementById('modal-title');
+      const modalDescription = document.getElementById('modal-description');
+      const modalImages = modal.querySelector('.images');
+      const modalClose = modal.querySelector('.modal-close');
+
+      document.querySelectorAll('.gallery figure.clickable').forEach(fig => {
+        fig.addEventListener('click', () => {
+          modal.style.display = 'flex';
+          modalTitle.textContent = fig.dataset.title;
+          modalDescription.textContent = fig.dataset.description;
+          modalImages.innerHTML = '';
+          const mainImg = document.createElement('img');
+          mainImg.src = fig.querySelector('img').src;
+          modalImages.appendChild(mainImg);
+        });
+      });
+
+      modalClose.addEventListener('click', () => { modal.style.display = 'none'; });
+      modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+    });
+  </script>
+</body>
+</html>
