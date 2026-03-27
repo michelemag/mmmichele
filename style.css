@@ -64,7 +64,7 @@ body.homepage {
 
 .nav-about { top: 60%; left: 45%; animation: float1 7s ease-in-out infinite alternate; }
 .nav-work { top: 30%; left: 65%; animation: float2 6s ease-in-out infinite alternate; }
-.nav-photography { top: 20%; left: 25%; animation: float2 6s ease-in-out infinite alternate; }
+.nav-photography { top: 40%; left: 25%; animation: float2 6s ease-in-out infinite alternate; }
 .nav-contact { top: 70%; left: 55%; animation: float3 8s ease-in-out infinite alternate; }
 .nav-shop { top: 50%; left: 30%; animation: float4 5.5s ease-in-out infinite alternate; }
 .nav-name {
