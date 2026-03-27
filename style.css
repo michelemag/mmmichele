@@ -445,3 +445,11 @@ footer {
   flex-direction: column;
   gap: 1rem;
 }
+/* ============================= */
+/* Photography Page blob colors  */
+/* ============================= */
+body.subpage-photography {
+  --blob-left: #ff85c2;
+  --blob-right: #c8f0a0;
+}
+ 
